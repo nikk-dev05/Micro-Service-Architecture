@@ -5,16 +5,13 @@ const route = require('./Routes/route.js');
 const { connectRabbitMQ } = require('./rabbitmq'); 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-connectDB();
-app.use(route);
-
-//app.listen(3003);
-(async () => {
+  const call =  async () => {
   await connectDB();
-  await connectRabbitMQ(); // ✅ MUST CALL
+  await connectRabbitMQ(); 
   app.use(route);
 
   app.listen(3003, () => {
     console.log("Order service running on 3003");
   });
-})();
+}
+call();

@@ -5,10 +5,11 @@ const route = require('./Routes/routes.js');
 const { connectRabbitMQ } = require('./rabbitmq.js');
 const { consumeOrderQueue } = require('./Productcontroller/consumer.js');
 
-(async () => {
+const call= async () => {
   await connectRabbitMQ();      
   await consumeOrderQueue();   
-})();
+};
+call();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 connectDB();
